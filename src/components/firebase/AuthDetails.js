@@ -31,7 +31,7 @@ const AuthDetails = () => {
     <div>
       {authUser && (
         <div>
-          <p>{`Signed In as ${authUser.email}`}</p>
+          <p>{`Signed In as ${authUser.displayName}`}</p>
           <button onClick={userSignOut}>Sign Out</button>
         </div>
       )}

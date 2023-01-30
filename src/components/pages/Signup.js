@@ -1,24 +1,40 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/base";
-import AuthDetails from "../firebase/AuthDetails";
-import { Link } from "react-router-dom";
+import { db } from "../firebase/base";
+
+import { Link, useNavigate } from "react-router-dom";
 import classes from "../styles/login.module.css";
+import { doc, setDoc } from "firebase/firestore";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [error, setError] = useState(false);
 
-  const signUp = (event) => {
+  const navigate = useNavigate();
+
+  const signUp = async (event) => {
     event.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
+
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(res.user, { displayName: displayName });
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        displayName,
+        email,
       });
+      console.log(
+        `Created account. Dis: ${res.user.displayName}, email: ${res.user.email}`
+      );
+      await setDoc(doc(db, "userChats", res.user.uid), {});
+      navigate("/");
+    } catch (err) {
+      setError(true);
+      console.log(err);
+    }
   };
 
   return (
@@ -45,12 +61,13 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Log in</button>
+          <button type="submit">Sign Up</button>
           <p>
             Already have an account? <Link to="/login">Login</Link>
           </p>
         </form>
-        <AuthDetails />
+        {error && <span>Something went wrong</span>}
+        {/* <AuthDetails /> */}
       </div>
     </div>
   );
