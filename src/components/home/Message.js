@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import classes from "../styles/home.module.css";
@@ -6,14 +6,29 @@ import classes from "../styles/home.module.css";
 const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
-  console.log(message);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
+
   return (
-    <div className={`${classes.message} ${classes.owner}`}>
+    <div
+      ref={ref}
+      className={`${classes.message} ${
+        message.senderId === currentUser.uid && classes.owner
+      }`}
+    >
       <div className={classes.messageInfo}>
-        <span>Marcus</span>
+        <span>
+          {message.senderId === currentUser.uid
+            ? currentUser.displayName
+            : data.user.displayName}
+        </span>
       </div>
       <div className={classes.messageContent}>
-        <p>Hello</p>
+        <p>{message.text}</p>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { auth } from "../firebase/base";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
