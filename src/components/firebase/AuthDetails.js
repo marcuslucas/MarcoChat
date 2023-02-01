@@ -1,9 +1,11 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "./base";
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -33,6 +35,7 @@ const AuthDetails = () => {
         <div>
           <p>{`Signed In as ${authUser.displayName}`}</p>
           <button onClick={userSignOut}>Sign Out</button>
+          <button onClick={navigate("/")}>Chat</button>
         </div>
       )}
     </div>

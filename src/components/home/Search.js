@@ -5,7 +5,7 @@ import { collection, query, serverTimestamp, where } from "firebase/firestore";
 import { getDocs, getDoc, setDoc, updateDoc, doc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 
-const Search = (props) => {
+const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
@@ -53,8 +53,25 @@ const Search = (props) => {
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
+      } else if (res.exists()) {
+        console.log("frik");
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: user.uid,
+            displayName: user.displayName,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
       }
     } catch (err) {
+      console.log(err);
       setErr(true);
     }
     setUser(null);
@@ -62,7 +79,12 @@ const Search = (props) => {
   };
 
   const handleKey = (e) => {
-    e.code === "Enter" && handleSearch();
+    if (username === "") {
+      setUser(null);
+      setUsername("");
+    } else {
+      e.code === "Enter" && handleSearch();
+    }
   };
 
   return (

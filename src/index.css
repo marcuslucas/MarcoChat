@@ -1,3 +1,13 @@
+:root {
+  --bgBlack: #101014;
+  --bgWhite: #f9f4f4;
+  --txtBlack: #0c0c0f;
+
+  --deepBlue: #001233;
+  --coralRed: #ff595a;
+  --beige: #cac0b3;
+}
+
 body {
   margin: 0;
 

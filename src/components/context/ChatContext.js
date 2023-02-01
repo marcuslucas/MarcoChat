@@ -10,6 +10,9 @@ export const ChatContextProvider = ({ children }) => {
     chatId: "null",
     user: {},
   };
+  // const combinedId = currentUser.uid > action.payload.uid
+  // ? currentUser.uid + action.payload.uid
+  // : action.payload.uid + currentUser.uid
 
   const chatReducer = (state, action) => {
     switch (action.type) {

@@ -52,6 +52,11 @@ const Input = (props) => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSend();
+          }
+        }}
       />
       <div className={classes.send}>
         <button onClick={handleSend}>Send</button>

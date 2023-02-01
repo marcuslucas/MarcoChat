@@ -1,10 +1,31 @@
 /* Home Page section */
 .home {
-  background-color: #a7bcff;
+  background-color: var(--deepBlue);
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-size: 56px 56px;
+  background-image: linear-gradient(
+      130deg,
+      transparent 45%,
+      var(--deepBlue) 60%
+    ),
+    radial-gradient(
+      transparent 6px,
+      var(--coralRed) 6px,
+      var(--coralRed) 10px,
+      transparent 10px,
+      transparent 15px,
+      var(--coralRed) 15px,
+      var(--coralRed) 19px,
+      transparent 19px,
+      transparent 24px,
+      var(--coralRed) 24px,
+      var(--coralRed) 28px,
+      transparent 28px
+    );
 }
 
 .homeContainer {
@@ -19,13 +40,15 @@
 /* SideBar section */
 .sidebar {
   flex: 1;
-  background-color: #3e3c61;
+  background-color: var(--deepBlue);
 }
 
 .navbar {
   display: flex;
   align-items: center;
-  background-color: #2f2d52;
+  background-color: var(--coralRed);
+  border-bottom: 1px solid var(--bgWhite);
+  border-right: 1px solid var(--bgWhite);
   height: 50px;
   padding: 10px;
   justify-content: space-between;
@@ -34,19 +57,31 @@
 
 .navbar .logo {
   font-weight: bold;
+  color: var(--txtWhite);
 }
 
 .navbar .user {
   display: flex;
   gap: 10px;
+  font-weight: 500;
+  padding: 5px 0px 5px 5px;
 }
 
 .navbar .user button {
-  background-color: #4d5b8d;
-  color: white;
+  background-color: var(--deepBlue);
+  color: var(--txtWhite);
   border: none;
+  padding: 4px;
+  border-radius: 4px;
   font-size: 10px;
+  font-weight: 800;
   cursor: pointer;
+  border: 1px solid var(--deepBlue);
+}
+
+.navbar .user button:hover {
+  background-color: var(--bgWhite);
+  color: var(--deepBlue);
 }
 
 .search {
@@ -75,10 +110,11 @@
   gap: 10px;
   color: white;
   cursor: pointer;
+  border-bottom: var(--bgWhite) 1px solid;
 }
 
 .userChat:hover {
-  background-color: #2f2d52;
+  background-color: var(--coralRed);
 }
 
 /* Chat Section */
@@ -89,19 +125,32 @@
 .chatInfo {
   display: flex;
   align-items: center;
-  background-color: #5d5b8d;
+  background-color: var(--coralRed);
   justify-content: space-between;
   padding: 10px;
   height: 50px;
-  color: lightgray;
+  font-weight: 500;
+  font-size: 22px;
+  padding-left: 12px;
+  color: var(--bgWhite);
+  border-bottom: 1px solid var(--bgWhite);
 }
 
 .chatIcons button {
-  background-color: #4d5b8d;
-  color: white;
+  background-color: var(--deepBlue);
+  color: var(--txtWhite);
   border: none;
+  padding: 6px;
+  border-radius: 4px;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  border: 1px solid var(--deepBlue);
+}
+
+.chatIcons button:hover {
+  background-color: var(--bgWhite);
+  color: var(--deepBlue);
 }
 
 .userChatInfo span {
@@ -111,35 +160,40 @@
 
 .chats .userChatInfo p {
   font-size: 14px;
+  margin: 0;
+  padding: 4px 0px 4px 0px;
   color: lightgray;
 }
 
 /* Messages */
 
 .messages {
-  background-color: #ddddf7;
+  background-color: var(--deepBlue);
   padding: 10px;
   height: calc(100% - 160px);
   overflow: scroll;
   overflow-x: hidden;
+  border-left: 1px solid var(--bgWhite);
 }
 
 .message {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  max-width: 100%;
 }
 
 .messageInfo {
   display: flex;
   flex-direction: column;
-  color: gray;
-  font-weight: 300;
+  color: var(--bgWhite);
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .messageContent {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+
+  max-width: 50%;
 }
 
 .messageContent p {
@@ -149,14 +203,18 @@
 }
 
 .owner {
-  flex-direction: row-reverse;
+  flex-flow: column wrap;
+  align-content: flex-end;
+}
+
+.owner .messageInfo {
+  text-align: right;
 }
 
 .owner p {
-  background-color: #8da4f1;
+  background-color: var(--coralRed);
   color: white;
   border-radius: 10px 0px 10px 10px;
-  max-width: max-content;
 }
 
 .owner .messageContent {
@@ -164,12 +222,13 @@
 }
 
 .input {
-  background-color: white;
+  background-color: var(--bgWhite);
   height: 50px;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 1px solid var(--bgWhite);
 }
 
 .input input {
@@ -181,7 +240,7 @@
 }
 
 .input input::placeholder {
-  color: lightgray;
+  color: var(--bgBlack);
 }
 
 .send {
@@ -192,7 +251,105 @@
 
 .send button {
   border: none;
-  padding: 10px 15px;
-  color: white;
-  background-color: #8da4f1;
+  padding: 5px 10px;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--bgWhite);
+  background-color: var(--coralRed);
+  border-radius: 4px;
 }
+
+/* 
+
+.chat {
+  width: 300px;
+  border: solid 1px #EEE;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.messages {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.yours {
+  align-items: flex-start;
+}
+
+.yours .message {
+  margin-right: 25%;
+  background-color: #eee;
+  position: relative;
+}
+
+.yours .message.last:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: -7px;
+  height: 20px;
+  width: 20px;
+  background: #eee;
+  border-bottom-right-radius: 15px;
+}
+.yours .message.last:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: -10px;
+  width: 10px;
+  height: 20px;
+  background: white;
+  border-bottom-right-radius: 10px;
+}
+
+.mine {
+  align-items: flex-end;
+}
+
+.mine .message {
+  color: white;
+  margin-left: 25%;
+  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+.mine .message.last:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  right: -8px;
+  height: 20px;
+  width: 20px;
+  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background-attachment: fixed;
+  border-bottom-left-radius: 15px;
+}
+
+.mine .message.last:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: -10px;
+  width: 10px;
+  height: 20px;
+  background: white;
+  border-bottom-left-radius: 10px;
+} */

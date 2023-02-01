@@ -5,7 +5,7 @@ import { ChatContext } from "../context/ChatContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/base";
 
-const Messages = () => {
+const Messages = (props) => {
   const [messages, setMessages] = useState([]);
 
   const { data } = useContext(ChatContext);
@@ -19,13 +19,14 @@ const Messages = () => {
     };
   }, [data.chatId]);
 
-  console.log(messages);
+  // console.log(messages);
 
   return (
     <div className={classes.messages}>
       {messages.map((m) => (
         <Message message={m} key={m.id} />
       ))}
+      {props.selected && <p>Select a chat</p>}
     </div>
   );
 };

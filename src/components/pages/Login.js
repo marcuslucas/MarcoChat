@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { auth } from "../firebase/base";
 import classes from "../styles/login.module.css";
+import AuthDetails from "../firebase/AuthDetails";
 
-const Login = (event) => {
+const Login = () => {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
 
@@ -47,11 +48,14 @@ const Login = (event) => {
           />
           <button type="submit">Log in</button>
           <p>
-            Don't have an account yet? <Link to="/signup">Register</Link>
+            Don't have an account yet?{" "}
+            <Link className={classes.link} to="/signup">
+              Register
+            </Link>
           </p>
           {err && <span>Something went wrong</span>}
         </form>
-        {/* <AuthDetails /> */}
+        <AuthDetails />
       </div>
     </div>
   );

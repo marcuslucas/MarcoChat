@@ -1,32 +1,55 @@
 .loginContainer {
-  background-color: #bca7ff;
+  background-color: var(--deepBlue);
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 0;
+  margin: 0;
+  background-size: 56px 56px;
+  background-image: linear-gradient(
+      130deg,
+      transparent 45%,
+      var(--deepBlue) 60%
+    ),
+    radial-gradient(
+      transparent 6px,
+      var(--coralRed) 6px,
+      var(--coralRed) 10px,
+      transparent 10px,
+      transparent 15px,
+      var(--coralRed) 15px,
+      var(--coralRed) 19px,
+      transparent 19px,
+      transparent 24px,
+      var(--coralRed) 24px,
+      var(--coralRed) 28px,
+      transparent 28px
+    );
 }
 
 .loginWrapper {
-  background-color: white;
-  padding: 30px 60px;
+  background-color: var(--bgWhite);
+
+  padding: 40px 60px;
   border-radius: 15px;
 }
-
 .loginWrapperSignUp {
-  background-color: white;
-  padding: 30px 90px;
+  background-color: var(--bgWhite);
+  padding: 40px 90px;
   border-radius: 15px;
 }
 
 .logo {
-  color: #bca7ff;
+  color: var(--txtBlack);
   font-weight: bold;
   font-size: 24px;
 }
 
 .title {
-  color: #bca7ff;
+  color: var(--txtBlack);
   font-weight: bold;
   font-size: 18px;
 }
@@ -48,17 +71,23 @@
 .form input {
   padding: 15px;
   border: none;
-  border-bottom: 1px solid #a7bcff;
+  border-bottom: 1.5px solid var(--deepBlue);
 }
 
 .form input::placeholder {
   color: rgb(175, 175, 175);
 }
 
+.form input:focus {
+  outline: none;
+  border-left: 1.5px solid var(--deepBlue);
+}
+
 .form button {
-  background-color: #7b96ec;
+  background-color: var(--coralRed);
   color: white;
   padding: 10px;
+  margin-top: 16px;
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -66,6 +95,15 @@
 }
 
 .form p {
-  color: #5d5b8d;
+  color: var(--txtBlack);
   margin-top: 20px;
+}
+
+.link {
+  font-weight: 500;
+  color: var(--txtBlack);
+}
+
+.link:hover {
+  color: var(--coralRed);
 }
