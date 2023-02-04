@@ -3,37 +3,23 @@ import { ChatContext } from "../context/ChatContext";
 import classes from "../styles/home.module.css";
 import Input from "./Input";
 import Messages from "./Messages";
-import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../firebase/base";
+import { useState } from "react";
+import Topbar from "./Topbar";
 
 const Chat = (props) => {
   const { data } = useContext(ChatContext);
-  const talkingTo = data.user.displayName;
-  // console.log(data.user.displayName);
+  const displayName = data.user.displayName;
+  // const [name, setName] = useState();
+  const [talkingTo, setTalkingto] = useState();
 
-  // const { dispatch } = useContext(ChatContext);
-
-  // const handleDelete = async () => {
-  //   console.log(data.chatId);
-  //   await deleteDoc(doc(db, "chats", data.chatId));
-  // };
+  const handleSwap = () => {
+    setTalkingto(!talkingTo);
+  };
 
   return (
     <div className={classes.chat}>
-      <div className={classes.chatInfo}>
-        <span>{talkingTo === null ? "Select A Chat" : talkingTo}</span>
-        <div className={classes.chatIcons}>
-          <button>Add friend</button>
-          {/* <button
-            onClick={() => {
-              handleDelete();
-            }}
-          >
-            Clear Chat
-          </button> */}
-        </div>
-      </div>
-      {talkingTo ? <Messages /> : <Messages selected={true} />}
+      <Topbar handleSwap={handleSwap} name={displayName} />
+      {talkingTo ? <Messages selected={true} /> : <Messages selected={false} />}
       <Input />
     </div>
   );

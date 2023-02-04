@@ -1,0 +1,49 @@
+.topBarContainer {
+  background-color: white;
+}
+
+.chatInfo {
+  display: flex;
+  align-items: center;
+  background-color: var(--coralRed);
+  justify-content: space-between;
+  padding: 10px;
+  height: 50px;
+  font-weight: 500;
+  font-size: 22px;
+  padding-left: 12px;
+  color: var(--bgWhite);
+  border-bottom: 1px solid var(--bgWhite);
+}
+
+.chatInfo button {
+  background-color: var(--deepBlue);
+  color: var(--txtWhite);
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--deepBlue);
+}
+
+.chatInfo button:hover {
+  background-color: var(--bgWhite);
+  color: var(--deepBlue);
+}
+
+/* 
+
+  
+  .userChatInfo span {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .chats .userChatInfo p {
+    font-size: 14px;
+    margin: 0;
+    padding: 4px 0px 4px 0px;
+    color: lightgray;
+  } */

@@ -23,10 +23,11 @@ const Messages = (props) => {
 
   return (
     <div className={classes.messages}>
-      {messages.map((m) => (
-        <Message message={m} key={m.id} />
-      ))}
-      {props.selected && <p>Select a chat</p>}
+      {props.selected ? (
+        messages.map((m) => <Message message={m} key={m.id} />)
+      ) : (
+        <p className={classes.msgPara}>Find some friends dude</p>
+      )}
     </div>
   );
 };

@@ -1,11 +1,13 @@
 import React from "react";
-import classes from "../styles/home.module.css";
-import Chats from "./Chats";
-import Navbar from "./Navbar";
-import Search from "./Search";
+import classes from "../styles/topbar.module.css";
+import { useContext } from "react";
+import { ChatContext } from "../context/ChatContext";
+import Hamburger from "../ui/Hamburger";
 import { useState, useEffect } from "react";
 
-const Sidebar = (props) => {
+const Topbar = (props) => {
+  const { data } = useContext(ChatContext);
+  const talkingTo = data.user.displayName;
   const [mobileView, setMobileView] = useState();
 
   useEffect(() => {
@@ -24,13 +26,18 @@ const Sidebar = (props) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
-    <div className={classes.sidebar}>
-      {!mobileView && <Navbar />}
-      <Search />
-      <Chats />
+    <div classname={classes.topBarContainer}>
+      <div className={classes.chatInfo}>
+        {mobileView && <Hamburger />}
+        <p>{!props.name ? "Select A Chat" : props.name}</p>
+        <button>Hide Chat</button>
+      </div>
     </div>
   );
 };
 
-export default Sidebar;
+// onClick={props.handleSwap}
+
+export default Topbar;
